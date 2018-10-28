@@ -35,25 +35,13 @@ def fifo(clk, rst, data_in, signal_wr, signal_oe, data_out):
     ''' A Cosimulation object, used to simulate Verilog modules '''
     os.system('iverilog -o fifo fifo.v top_fifo.v')    
     return Cosimulation('vvp -m ./myhdl.vpi fifo', clk=clk, rst=rst, data_in=data_in, signal_wr=signal_wr, signal_oe=signal_oe, data_out=data_out)
-    
-
+ 
 clk = Signal(bool(0))
 rst = Signal(bool(1))
 data_in = Signal(intbv(0)[32:])
 signal_wr = Signal(bool(0))
 signal_oe = Signal(bool(0))
 data_out = Signal(intbv(0)[32:])
-
-print '_________________________________'
-print 'Start signals values:'
-print 'clk: ' + str(clk)
-print 'rst: ' + str(rst)
-print 'data_in: ' + str(data_in)
-print 'signal_wr: ' + str(signal_wr)
-print 'signal_oe: ' + str(signal_oe)
-print 'data_out: ' + str(data_out)
-print '_________________________________\n'
-
 
 clk_driver_inst = clk_driver(clk)
 reset_driver_inst = reset_driver(clk,rst)
