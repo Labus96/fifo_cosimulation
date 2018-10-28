@@ -1,0 +1,105 @@
+$date
+	Sun Oct 28 21:19:42 2018
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module top_fifo $end
+$var wire 32 ! data_out [31:0] $end
+$var reg 1 " clk $end
+$var reg 32 # data_in [31:0] $end
+$var reg 1 $ rst $end
+$var reg 1 % signal_oe $end
+$var reg 1 & signal_wr $end
+$scope module dut $end
+$var wire 1 ' clk $end
+$var wire 32 ( data_in [31:0] $end
+$var wire 32 ) data_out [31:0] $end
+$var wire 1 * rst $end
+$var wire 1 + signal_oe $end
+$var wire 1 , signal_wr $end
+$var reg 2 - fifo_buf_read [1:0] $end
+$var reg 2 . fifo_buf_write [1:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx .
+bx -
+x,
+x+
+x*
+bx )
+bx (
+x'
+x&
+x%
+x$
+bx #
+x"
+bx !
+$end
+#5002
+b0 !
+b0 )
+0%
+0+
+1&
+1,
+b10010 #
+b10010 (
+0$
+0*
+1"
+1'
+#5003
+1$
+1*
+#10002
+0"
+0'
+#15002
+b0 -
+b0 .
+1"
+1'
+#15003
+0$
+0*
+#20002
+0"
+0'
+#25002
+b1 .
+1"
+1'
+#25003
+1$
+1*
+#30002
+0"
+0'
+#35002
+b0 .
+1"
+1'
+#35003
+0$
+0*
+#40002
+0"
+0'
+#45002
+b1 .
+1"
+1'
+#45003
+1$
+1*
+#50002
+0"
+0'

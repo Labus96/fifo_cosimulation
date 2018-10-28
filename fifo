@@ -1,0 +1,126 @@
+#! /usr/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x926e80 .scope module, "top_fifo" "top_fifo" 2 3;
+ .timescale 0 0;
+v0x95d810_0 .var "clk", 0 0;
+v0x95d8b0_0 .var "data_in", 31 0;
+v0x95d960_0 .net "data_out", 31 0, L_0x95ddc0; 1 drivers
+v0x95da10_0 .var "rst", 0 0;
+v0x95daf0_0 .var "signal_oe", 0 0;
+v0x95dba0_0 .var "signal_wr", 0 0;
+S_0x914690 .scope module, "dut" "fifo" 2 12, 3 1, S_0x926e80;
+ .timescale 0 0;
+P_0x914ae8 .param/l "ADDR_WIDTH" 3 4, +C4<00000000000000000000000000000010>;
+P_0x914b10 .param/l "DATA_WIDTH" 3 2, +C4<0100000>;
+P_0x914b38 .param/l "FIFO_SIZE" 3 3, +C4<011>;
+v0x949f60_0 .net *"_s0", 31 0, L_0x95dc20; 1 drivers
+v0x95d0f0_0 .net *"_s2", 31 0, C4<00000000000000000000000000000000>; 1 drivers
+v0x95d190_0 .net "clk", 0 0, v0x95d810_0; 1 drivers
+v0x95d230_0 .net "data_in", 31 0, v0x95d8b0_0; 1 drivers
+v0x95d2e0_0 .alias "data_out", 31 0, v0x95d960_0;
+v0x95d380 .array "fifo_buf", 2 0, 31 0;
+v0x95d440_0 .var "fifo_buf_read", 1 0;
+v0x95d4e0_0 .var "fifo_buf_write", 1 0;
+v0x95d5d0_0 .net "rst", 0 0, v0x95da10_0; 1 drivers
+v0x95d670_0 .net "signal_oe", 0 0, v0x95daf0_0; 1 drivers
+v0x95d770_0 .net "signal_wr", 0 0, v0x95dba0_0; 1 drivers
+E_0x926f70 .event posedge, v0x95d190_0;
+L_0x95dc20 .array/port v0x95d380, v0x95d440_0;
+L_0x95ddc0 .functor MUXZ 32, C4<00000000000000000000000000000000>, L_0x95dc20, v0x95daf0_0, C4<>;
+    .scope S_0x914690;
+T_0 ;
+    %wait E_0x926f70;
+    %load/v 8, v0x95d5d0_0, 1;
+    %mov 9, 0, 2;
+    %cmpi/u 8, 1, 3;
+    %jmp/0xz  T_0.0, 4;
+    %ix/load 0, 2, 0;
+    %assign/v0 v0x95d4e0_0, 0, 0;
+    %ix/load 0, 2, 0;
+    %assign/v0 v0x95d440_0, 0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v0x95d770_0, 1;
+    %mov 9, 0, 2;
+    %cmpi/u 8, 1, 3;
+    %jmp/0xz  T_0.2, 4;
+    %load/v 8, v0x95d230_0, 32;
+    %ix/getv 3, v0x95d4e0_0;
+    %jmp/1 t_0, 4;
+    %ix/load 0, 32, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v0x95d380, 0, 8;
+t_0 ;
+    %load/v 8, v0x95d4e0_0, 2;
+    %mov 10, 0, 3;
+    %cmpi/u 8, 2, 5;
+    %mov 8, 4, 1;
+    %jmp/0  T_0.4, 8;
+    %mov 9, 0, 32;
+    %jmp/1  T_0.6, 8;
+T_0.4 ; End of true expr.
+    %load/v 41, v0x95d4e0_0, 2;
+    %mov 43, 0, 30;
+    %addi 41, 1, 32;
+    %jmp/0  T_0.5, 8;
+ ; End of false expr.
+    %blend  9, 41, 32; Condition unknown.
+    %jmp  T_0.6;
+T_0.5 ;
+    %mov 9, 41, 32; Return false value
+T_0.6 ;
+    %ix/load 0, 2, 0;
+    %assign/v0 v0x95d4e0_0, 0, 9;
+    %jmp T_0.3;
+T_0.2 ;
+    %load/v 8, v0x95d670_0, 1;
+    %mov 9, 0, 2;
+    %cmpi/u 8, 1, 3;
+    %jmp/0xz  T_0.7, 4;
+    %load/v 8, v0x95d440_0, 2;
+    %mov 10, 0, 3;
+    %cmpi/u 8, 2, 5;
+    %mov 8, 4, 1;
+    %jmp/0  T_0.9, 8;
+    %mov 9, 0, 32;
+    %jmp/1  T_0.11, 8;
+T_0.9 ; End of true expr.
+    %load/v 41, v0x95d440_0, 2;
+    %mov 43, 0, 30;
+    %addi 41, 1, 32;
+    %jmp/0  T_0.10, 8;
+ ; End of false expr.
+    %blend  9, 41, 32; Condition unknown.
+    %jmp  T_0.11;
+T_0.10 ;
+    %mov 9, 41, 32; Return false value
+T_0.11 ;
+    %ix/load 0, 2, 0;
+    %assign/v0 v0x95d440_0, 0, 9;
+T_0.7 ;
+T_0.3 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x926e80;
+T_1 ;
+    %vpi_call 2 15 "$from_myhdl", v0x95d810_0, v0x95da10_0, v0x95d8b0_0, v0x95dba0_0, v0x95daf0_0;
+    %vpi_call 2 16 "$to_myhdl", v0x95d960_0;
+    %end;
+    .thread T_1;
+    .scope S_0x926e80;
+T_2 ;
+    %vpi_call 2 20 "$dumpfile", "top_fifo.vcd";
+    %vpi_call 2 21 "$dumpvars";
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "top_fifo.v";
+    "fifo.v";
