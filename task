@@ -1,0 +1,135 @@
+touch file
+
+nano file
+git add file
+git commit -m "commit 1"
+git tag v1.0
+git push origin master
+git push origin v1.0 
+
+nano file
+git add file
+git commit -m "commit 2"
+git tag v1.1
+git push origin master
+git push origin v1.1
+
+git branch develop
+
+git checkout develop
+nano file
+git add file
+git commit -m "commit 3"
+git push origin develop
+
+git branch feature_1
+git branch feature_2
+
+git checkout develop
+nano file
+git add file
+git commit -m "commit 4"
+git push origin develop
+
+git checkout feature_2
+nano file
+git add file
+git commit -m "commit 5"
+git push origin feature_2
+
+git checkout feature_1
+nano file
+git add file
+git commit -m "commit 6"
+git push origin feature_1
+
+git checkout feature_2
+nano file
+git add file
+git commit -m "commit 7"
+git push origin feature_2
+
+git checkout master
+nano file
+git add file
+git commit -m "commit 2.1"
+git tag v1.2
+git push origin master
+git push origin v1.2 
+
+git branch hotfix
+git checkout hotfix
+nano file
+git add file
+git commit -m "commit 2.2"
+git push origin hotfix
+
+git checkout master
+git merge hotfix
+nano file
+git add file
+git commit -m "commit 2.3"
+git tag v1.3
+git push origin master
+git push origin v1.3
+
+git checkout develop
+git merge hotfix
+nano file
+git add file
+git commit -m "commit 8"
+git push origin develop
+
+git checkout feature_1
+nano file
+git add file
+git commit -m "commit 9"
+git push origin feature_1
+
+git checkout feature_2
+nano file
+git add file
+git commit -m "commit 10"
+git push origin feature_2
+
+git checkout feature_1
+nano file
+git add file
+git commit -m "commit 11"
+git push origin feature_1
+
+git checkout develop
+git merge feature_1
+nano file
+git add file
+git commit -m "commit 12"
+git push origin develop
+git branch -d feature_1
+
+git merge feature_2
+nano file
+git add file
+git commit -m "commit 13"
+git push origin develop
+git branch -d feature_2
+
+nano file
+git add file
+git commit -m "commit 14"
+git push origin develop
+
+git checkout master
+git merge develop
+nano file
+git add file
+git commit -m "commit 15"
+git tag v1.4
+git push origin master
+git push origin v1.4
+
+nano file
+git add file
+git commit -m "commit 16"
+git tag v1.5
+git push origin master
+git push origin v1.5
